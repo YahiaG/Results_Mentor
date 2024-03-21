@@ -3,45 +3,73 @@
     margin: 0;
     padding: 0;
   }
+  :root {
+    --Light-red: hsl(0, 100%, 67%);
+    --Orangey-yellow: hsl(39, 100%, 56%);
+    --Green-teal: hsl(166, 100%, 37%);
+    --Cobalt-blue: hsl(234, 85%, 45%);
+
+    /* ## Gradients */
+
+    --Light-slate-blue /*(background)*/: hsl(252, 100%, 67%);
+    --Light-royal-blue /*(background)*/ : hsl(241, 81%, 54%);
+
+    --Violet-blue /*(circle)*/ : hsla(256, 72%, 46%, 1);
+    --Persian-blue /*(circle)*/ : hsla(241, 72%, 46%, 0);
+    --Result-text: hsla(241, 100%, 89%, 0.7);
+
+    /* ### Neutral */
+
+    --White: hsl(0, 0%, 100%);
+    --Pale-blue: hsla(221, 100%, 96%, 70%);
+    --Light-lavender: hsl(241, 100%, 89%);
+    --Dark-gray-blue: hsl(224, 30%, 27%);
+
+  }
   body{
     font-family: 'Hanken Grotesk', sans-serif;
-    background-color: hsl(0, 0%, 100%);
+    background-color: var(--White);
+    font-size: 18px;
   }
-  
-  .holder{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+  main {
+    min-height: 100vh;
     display: flex;
+    justify-content: center;
+    align-items: center;
   }
-
-  @media (max-width:767px) {
+  .holder{
+    border-radius: 35px;
+    overflow: hidden;
+    box-shadow: 20px 20px 20px 20px var(--Pale-blue)
+  }
+  @media (min-width:768px) {
     .holder{
-      flex-direction: column;
+      display: flex;
     }
   }
 
   .result{
-    background-image:linear-gradient(to bottom, hsl(251.49deg 98.95% 62.75%), hsl(241, 81%, 54%)) ;
+    background-image:linear-gradient(to bottom, var(--Light-slate-blue), var(--Light-royal-blue)) ;
     text-align: center;
     border-radius: 35px;
-    width: 370px;
+    width: 375px;
+    padding: 40px;
   }
 
   .result .title{
     font-size: 25px;
-    font-weight: 500;
-    color: hsl(241, 100%, 89%);
-    margin: 40px 0 30px;
+    font-weight: 700;
+    color: var(--Pale-blue);
+    margin-bottom: 30px;
   }
 
   .circle{
     width: 200px;
     height: 200px;
     border-radius: 50%;
-    background-image: linear-gradient(to bottom, hsla(256, 72%, 46%, 1), hsla(241, 72%, 46%, 0)) ;
+    background-image: linear-gradient(to bottom, var(--Violet-blue), var(--Persian-blue)) ;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     margin: 0 auto;
@@ -49,39 +77,35 @@
   .circle .num{
     font-size: 70px;
     font-weight: 800;
-    color: hsl(0, 0%, 100%);
-    color: hsl(300, 100%, 100%);
+    color: var(--White);
   }
   .circle span{
     display: block;
-    font-size: 15px;
-    color: hsla(241, 100%, 89%, 0.5);
+    font-size: 18px;
+    color: var(--Result-text);
   }
-
+  .text {
+    opacity: 0;
+    overflow: hidden;
+    transition: opacity 2s;
+  }
   .comment{
     font-size: 30px;
     font-weight: 700;
-    color: hsl(0, 0%, 100%);
+    color: var(--White);
     margin: 30px 0 20px;
   }
-
   .info{
-    font-size: 18px;
-    padding: 0 60px;
-    margin-bottom: 55px;
-    color: hsla(241, 100%, 89%, 0.7);
+    padding: 0 25px;
+    color: var(--Result-text);
   }
-
   .summary{
     padding: 40px;
-    width: 370px;
-    box-shadow: 10px 10px 5px 9px hsl(222deg 83.33% 97.65%);
-    }
-
-    
-.summary .title {
-  font-size: 24px;
-  font-weight: 800;
+    width: 375px;
+  }
+  .summary .title {
+    font-size: 24px;
+    font-weight: 800;
   }
 
   .skills{
@@ -93,13 +117,23 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 18px;
     font-weight: 700;
     padding: 15px;
     margin-bottom: 18px;
     border-radius: 10px;
+    position: relative;
   }
-
+  .skill::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--Orangey-yellow);
+    z-index: -1;
+    border-radius: 9px;
+  }
   .skill .name{
     display: flex;
     align-items: center;
@@ -145,14 +179,15 @@
     width: 100%;
     border-radius: 27px;
     border: none;
-    background-color: hsl(224, 30%, 27%);
+    background-color: var(--Dark-gray-blue);
     color: white;
     padding: 15px;
     margin-top: 15px;
     font-size: 20px;
+    transition: color 0.3s;
+    cursor: pointer;
   }
-
-
-
-  .attribution { font-size: 11px; text-align: center; }
-  .attribution a { color: hsl(228, 45%, 44%); }
+  .summary button:hover {
+    background-color: var(--Cobalt-blue);
+    opacity: 0.9;
+  }
